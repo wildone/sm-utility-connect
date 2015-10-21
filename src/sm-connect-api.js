@@ -9,13 +9,19 @@ class SmConnectApi {
         notify: true
       },
 
-      server: String,
+      server: {
+        type: String,
+        value: simpla.config.server
+      },
       key: String,
       endpoint: {
         computed: '_computeEndpoint(server, key)'
       },
 
-      api: String,
+      api: {
+        type: String,
+        value: simpla.config.api
+      },
       params: {
         computed: '_computeParams(api)'
       },
@@ -57,7 +63,7 @@ class SmConnectApi {
   }
 
   _computeEndpoint(server, key) {
-    return `${server}/api/v1/items/${key}`;
+    return `${server}/items/${key}`;
   }
 
   _computeParams(api) {

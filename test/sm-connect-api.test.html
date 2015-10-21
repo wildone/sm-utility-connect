@@ -83,14 +83,22 @@
             expect(component.headers).to.deep.equal({});
           });
 
-          it('have readonly endpoint that === {server}/api/v1/items/{key}', function() {
+          it('have readonly endpoint that === {server}/items/{key}', function() {
             var server = 'foo',
                 key = 'bar';
 
             component.server = server;
             component.key = key;
 
-            expect(component.endpoint).to.equal(server + '/api/v1/items/' + key);
+            expect(component.endpoint).to.equal(server + '/items/' + key);
+          });
+
+          it('should default to simpla.config.server for server', function() {
+            expect(component.server).to.equal(simpla.config.server);
+          });
+
+          it('should default to simpla.config.server for server', function() {
+            expect(component.api).to.equal(simpla.config.api);
           });
 
           it('should have two activeRequests that default to empty arrays', function() {
