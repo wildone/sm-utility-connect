@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sm-connect-api</title>
+    <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../test-fixture/test-fixture.html">
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../sm-connect-api.html">
+    <script src="./sm-connect-api.fixtures.js"></script>
+  </head>
+  <body>
+    <test-fixture id="default">
+      <template>
+        <sm-connect-api></sm-connect-api>
+      </template>
+    </test-fixture>
+    <script>
+      describe('<sm-connect-api>', function() {
+
+        var component,
+            componentFixtures,
+            listener;
+
+        componentFixtures = window.fixtures;
+
+        beforeEach(function() {
+          component = fixture('default');
+
+          sinon.stub(component.$.post, 'generateRequest');
+          sinon.stub(component.$.get, 'generateRequest');
+
+          listener = sinon.spy();
+        });
+
+        it('is okay', function() {
+          expect(component).to.be.ok;
+        });
+
+        describe('functions', function() {
+          it('should have load function that calls get', function() {
+            expect(typeof component.load).to.equal('function');
+
+            component.load();
+            expect(component.$.get.generateRequest.called).to.be.true;
+          });
+
+          it('should have save function that calls post', function() {
+            expect(typeof component.save).to.equal('function');
+
+            component.save();
+            expect(component.$.post.generateRequest.called).to.be.true;
+          });
+        });
+
+        describe('properties', function() {
+          it('should have value, that notifies on change', function() {
+            component.addEventListener('value-changed', listener);
+
+            component.value = { foo: 'bar' };
+            expect(listener.called).to.be.true;
+          });
+
+          it('should update post.body on value change', function() {
+            var body = { foo: 'bar' };
+
+            component.value = body;
+            expect(component.$.post.body).to.equal(body);
+          });
+
+          it('should calculate headers based on token', function() {
+            var token = 'foo';
+
+            component.token = token;
+            expect(component.headers).to.deep.equal({
+              'Authorization': 'bearer ' + token
+            });
+
+            component.token = null;
+            expect(component.headers).to.deep.equal({});
+          });
+
+          it('have readonly endpoint that === {server}/api/v1/items/{key}', function() {
+            var server = 'foo',
+                key = 'bar';
+
+            component.server = server;
+            component.key = key;
+
+            expect(component.endpoint).to.equal(server + '/api/v1/items/' + key);
+          });
+
+          it('should have two activeRequests that default to empty arrays', function() {
+            expect(Array.isArray(component.activeLoadRequests)).to.be.true;
+            expect(Array.isArray(component.activeSaveRequests)).to.be.true;
+          });
+
+          it('should have params which is calculated from api', function() {
+            component.api = 'foobar';
+            expect(component.params).to.deep.equal({ api: 'foobar' });
+          });
+
+          it('should have loading, which follows get.loading', function() {
+            expect(component.loading).to.be.false;
+
+            component.$.get._setLoading(true);
+            expect(component.loading).to.be.true;
+
+            component.$.get._setLoading(false);
+            expect(component.loading).to.be.false;
+          });
+
+          it('should have saving, which follows post.loading', function() {
+            expect(component.saving).to.be.false;
+
+            component.$.post._setLoading(true);
+            expect(component.saving).to.be.true;
+
+            component.$.post._setLoading(false);
+            expect(component.saving).to.be.false;
+          });
+
+          it('should fire loaded when response fired from get', function() {
+            component.addEventListener('loaded', listener);
+
+            component.$.get.fire('response');
+            expect(listener.called).to.be.true;
+          });
+
+          it('should fire loaded when response fired from post', function() {
+            component.addEventListener('saved', listener);
+
+            component.$.post.fire('response');
+            expect(listener.called).to.be.true;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

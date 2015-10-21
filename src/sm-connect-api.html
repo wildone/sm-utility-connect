@@ -1,0 +1,35 @@
+<dom-module id="sm-connect-api">
+  <template>
+    <iron-ajax
+      id="post"
+      method="POST"
+      loading="{{saving}}"
+      params="[[params]]"
+      headers="[[headers]]"
+      url="[[endpoint]]"
+      body="[[value]]"
+      handle-as="json"
+      content-type="application/json"
+      on-response="_savedHandler"
+      debounce-duration="300"></iron-ajax>
+
+    <iron-ajax
+      id="get"
+      method="GET"
+      loading="{{loading}}"
+      params="[[params]]"
+      headers="[[headers]]"
+      url="[[endpoint]]"
+      handle-as="json"
+      last-response="{{value}}"
+      on-response="_loadedHandler"
+      debounce-duration="300"></iron-ajax>
+
+    <!-- <iron-localstorage
+      name="token"
+      value={{token}}></iron-localstorage> -->
+
+
+  </template>
+  <script src="./sm-connect-api.js"></script>
+</dom-module>
