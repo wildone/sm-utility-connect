@@ -25,6 +25,8 @@
       on-response="_loadedHandler"
       debounce-duration="300"></iron-ajax>
 
+    <sm-connect-auth token="{{token}}"></sm-connect-api>
+
   </template>
   <script src="./sm-connect-api.js"></script>
 </dom-module>

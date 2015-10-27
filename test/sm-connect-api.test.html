@@ -71,6 +71,12 @@
             expect(component.$.post.body).to.equal(body);
           });
 
+          it('should follow token from shared auth information', function() {
+            auth = document.createElement('sm-connect-auth');
+            auth.token = 'foo';
+            expect(component.token).to.equal('foo');
+          });
+
           it('should calculate headers based on token', function() {
             var token = 'foo';
 
