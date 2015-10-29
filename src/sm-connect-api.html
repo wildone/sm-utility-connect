@@ -11,6 +11,7 @@
       handle-as="json"
       content-type="application/json"
       on-response="_savedHandler"
+      on-error="_errorHandler"
       debounce-duration="300"></iron-ajax>
 
     <iron-ajax
@@ -23,6 +24,7 @@
       handle-as="json"
       last-response="{{value}}"
       on-response="_loadedHandler"
+      on-error="_errorHandler"
       debounce-duration="300"></iron-ajax>
 
     <sm-connect-auth token="{{token}}"></sm-connect-api>

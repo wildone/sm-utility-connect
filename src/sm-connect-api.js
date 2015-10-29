@@ -83,6 +83,10 @@ class SmConnectApi {
   _loadedHandler() {
     this.fire('loaded', { value: this.value });
   }
+
+  _errorHandler(event) {
+    this.fire('error', event.detail);
+  }
 }
 
 Polymer(SmConnectApi);

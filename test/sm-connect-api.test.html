@@ -150,6 +150,20 @@
             component.$.post.fire('response');
             expect(listener.called).to.be.true;
           });
+
+          it('should fire error when error from get', function() {
+            component.addEventListener('error', listener);
+
+            component.$.get.fire('error', null, { bubbles: false });
+            expect(listener.called).to.be.true;
+          });
+
+          it('should fire error when error from post', function() {
+            component.addEventListener('error', listener);
+
+            component.$.post.fire('error', null, { bubbles: false });
+            expect(listener.called).to.be.true;
+          });
         });
       });
     </script>
