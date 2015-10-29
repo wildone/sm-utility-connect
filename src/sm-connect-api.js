@@ -77,11 +77,11 @@ class SmConnectApi {
   }
 
   _savedHandler() {
-    this.fire('saved', { value: this.value });
+    this.fire('saved', { value: this.value }, { bubbles: false });
   }
 
   _loadedHandler() {
-    this.fire('loaded', { value: this.value });
+    this.fire('loaded', { value: this.value }, { bubbles: false });
   }
 
   _errorHandler(event) {

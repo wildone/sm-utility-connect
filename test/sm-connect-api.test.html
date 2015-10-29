@@ -164,6 +164,20 @@
             component.$.post.fire('error', null, { bubbles: false });
             expect(listener.called).to.be.true;
           });
+
+          it('should not bubble loaded', function() {
+            component.parentElement.addEventListener('loaded', listener);
+
+            component._loadedHandler();
+            expect(listener.called).to.be.false;
+          });
+
+          it('should not bubble saved', function() {
+            component.parentElement.addEventListener('saved', listener);
+
+            component._savedHandler();
+            expect(listener.called).to.be.false;
+          });
         });
       });
     </script>
