@@ -1,8 +1,8 @@
 {
-  "name": "sm-connect-api",
+  "name": "sm-utility-connect",
   "version": "0.1.0",
-  "description": "Connects to Simpla's API",
-  "main": "sm-connect-api.html",
+  "description": "Utility element to connect Simpla to a RESTful API",
+  "main": "sm-utility-connect.html",
   "scripts": {
     "test": "gulp test:local"
   },
@@ -16,10 +16,10 @@
   ],
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/simplaio/sm-connect-api.git"
+    "url" : "https://github.com/simplaio/sm-utility-connect.git"
   },
   "bugs": {
-    "url" : "https://github.com/simplaio/sm-connect-api/issues"
+    "url" : "https://github.com/simplaio/sm-utility-connect/issues"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.0",

@@ -1,4 +1,4 @@
-<dom-module id="sm-connect-api">
+<dom-module id="sm-utility-connect">
   <template>
     <iron-ajax
       id="post"
@@ -27,8 +27,8 @@
       on-error="_errorHandler"
       debounce-duration="300"></iron-ajax>
 
-    <sm-connect-auth token="{{token}}"></sm-connect-api>
+    <sm-connect-auth token="{{token}}"></sm-connect-auth>
 
   </template>
-  <script src="./sm-connect-api.js"></script>
+  <script src="./sm-utility-connect.js"></script>
 </dom-module>

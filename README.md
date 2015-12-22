@@ -1,6 +1,6 @@
-# connect api
+# Utility connect
 
-Connects to Simpla's API
+Utility element to connect Simpla elements to a RESTful API
 
 --
 

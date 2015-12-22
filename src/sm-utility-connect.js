@@ -1,6 +1,6 @@
-class SmConnectApi {
+class SmUtilityConnect {
   beforeRegister() {
-    this.is = 'sm-connect-api';
+    this.is = 'sm-utility-connect';
 
     this.properties = {
 
@@ -89,4 +89,4 @@ class SmConnectApi {
   }
 }
 
-Polymer(SmConnectApi);
+Polymer(SmUtilityConnect);

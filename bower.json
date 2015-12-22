@@ -1,12 +1,12 @@
 {
-  "name": "sm-connect-api",
-  "description": "Connects to Simpla's API",
+  "name": "sm-utility-connect",
+  "description": "Utility element to connect Simpla to a RESTful API",
   "version": "0.0.0",
   "authors": [
     "Simpla <admin@simpla.io>"
   ],
   "license": "MIT",
-  "main": "sm-connect-api.html",
+  "main": "sm-utility-connect.html",
   "keywords": [
     "simpla",
     "web component",
@@ -16,7 +16,7 @@
   "ignore": [
     "*",
     "!src/**/*",
-    "!sm-connect-api.html",
+    "!sm-utility-connect.html",
     "!LICENSE"
   ],
   "dependencies": {

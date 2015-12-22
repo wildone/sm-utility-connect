@@ -1,5 +1,5 @@
 (function() {
-  var NAME = 'sm-connect-api';
+  var NAME = 'sm-utility-connect';
 
   window.fixtures = window.fixtures || {};
   window.fixtures[NAME] = {
