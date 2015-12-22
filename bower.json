@@ -24,7 +24,7 @@
     "polymer": "^1.1.4",
     "simpla-core": "git@github.com:simplaio/simpla-core.git",
     "iron-ajax": "PolymerElements/iron-ajax#~1.0.6",
-    "sm-connect-auth": "git@github.com:simplaio/sm-connect-auth.git"
+    "sm-utility-auth": "git@github.com:simplaio/sm-utility-auth.git"
   },
   "devDependencies": {
     "web-component-tester": "^3.3.22",
@@ -34,6 +34,6 @@
     "polymer/polymer.html",
     "simpla-core/simpla-core.html",
     "iron-ajax/iron-ajax.html",
-    "sm-connect-auth/sm-connect-auth.html"
+    "sm-utility-auth/sm-utility-auth.html"
   ]
 }
