@@ -1,4 +1,4 @@
-# Utility connect
+# Utility Connect
 ![][bower-badge] [![][travis-badge]][travis-url] [![][bowerdeps-badge]][bowerdeps-url] [![][npmdevdeps-badge]][npmdevdeps-url]
 
 Utility element to connect Simpla elements to a RESTful API
