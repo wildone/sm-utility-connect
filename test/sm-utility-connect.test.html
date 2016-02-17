@@ -89,14 +89,16 @@
             expect(component.headers).to.deep.equal({});
           });
 
-          it('have readonly endpoint that === {server}/items/{key}', function() {
+          it('have readonly endpoint that === {server}/projects/{api}/items/{key}', function() {
             var server = 'foo',
-                key = 'bar';
+                key = 'bar',
+                api = 'qux';
 
             component.server = server;
             component.key = key;
+            component.api = api;
 
-            expect(component.endpoint).to.equal(server + '/items/' + key);
+            expect(component.endpoint).to.equal(server + '/projects/' + api + '/items/' + key);
           });
 
           it('should default to simpla.config.server for server', function() {
@@ -110,11 +112,6 @@
           it('should have two activeRequests that default to empty arrays', function() {
             expect(Array.isArray(component.activeLoadRequests)).to.be.true;
             expect(Array.isArray(component.activeSaveRequests)).to.be.true;
-          });
-
-          it('should have params which is calculated from api', function() {
-            component.api = 'foobar';
-            expect(component.params).to.deep.equal({ api: 'foobar' });
           });
 
           it('should have loading, which follows get.loading', function() {

@@ -13,17 +13,16 @@ class SmUtilityConnect {
         type: String,
         value: simpla.config.server
       },
+
       key: String,
-      endpoint: {
-        computed: '_computeEndpoint(server, key)'
-      },
 
       api: {
         type: String,
         value: simpla.config.api
       },
-      params: {
-        computed: '_computeParams(api)'
+
+      endpoint: {
+        computed: '_computeEndpoint(server, key, api)'
       },
 
       token: String,
@@ -62,12 +61,8 @@ class SmUtilityConnect {
     this.$.post.generateRequest();
   }
 
-  _computeEndpoint(server, key) {
-    return `${server}/items/${key}`;
-  }
-
-  _computeParams(api) {
-    return { api };
+  _computeEndpoint(server, key, api) {
+    return `${server}/projects/${api}/items/${key}`;
   }
 
   _computeHeaders(token) {

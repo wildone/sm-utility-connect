@@ -2,9 +2,8 @@
   <template>
     <iron-ajax
       id="post"
-      method="POST"
+      method="PUT"
       loading="{{saving}}"
-      params="[[params]]"
       headers="[[headers]]"
       url="[[endpoint]]"
       body="[[value]]"
@@ -18,7 +17,6 @@
       id="get"
       method="GET"
       loading="{{loading}}"
-      params="[[params]]"
       headers="[[headers]]"
       url="[[endpoint]]"
       handle-as="json"
