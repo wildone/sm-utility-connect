@@ -67,7 +67,7 @@ class SmUtilityConnect {
 
   _computeHeaders(token) {
     return token ? {
-      'Authorization': `bearer ${token}`
+      'Authorization': `Bearer ${token}`
     } : {};
   }
 
