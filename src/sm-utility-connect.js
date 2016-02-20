@@ -62,7 +62,8 @@ class SmUtilityConnect {
   }
 
   _computeEndpoint(server, key, api) {
-    return `${server}/projects/${api}/items/${key}`;
+    let escapedKey = encodeURIComponent(key);
+    return `${server}/projects/${api}/items/${escapedKey}`;
   }
 
   _computeHeaders(token) {

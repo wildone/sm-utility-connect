@@ -8,9 +8,19 @@
     <script src="../../test-fixture/test-fixture-mocha.js"></script>
     <link rel="import" href="../../test-fixture/test-fixture.html">
 
+    <script>
+      var simpla = {
+        config: {
+          server: 'https://api.simpla.io',
+          api: 'Afa9j-x'
+        }
+      };
+    </script>
+
     <!-- Import the element to test -->
     <link rel="import" href="../sm-utility-connect.html">
     <script src="./sm-utility-connect.fixtures.js"></script>
+
   </head>
   <body>
     <test-fixture id="default">
@@ -82,7 +92,7 @@
 
             component.token = token;
             expect(component.headers).to.deep.equal({
-              'Authorization': 'bearer ' + token
+              'Authorization': 'Bearer ' + token
             });
 
             component.token = null;
@@ -99,6 +109,19 @@
             component.api = api;
 
             expect(component.endpoint).to.equal(server + '/projects/' + api + '/items/' + key);
+          });
+
+          it('should escape special characters in the endpoint', function() {
+            var server = 'foo',
+                key = '/bar\\.html.foo\\.baz.qux',
+                api = 'qux',
+                encodedKey = '%2Fbar%5C.html.foo%5C.baz.qux';
+
+            component.server = server;
+            component.key = key;
+            component.api = api;
+
+            expect(component.endpoint).to.equal(server + '/projects/' + api + '/items/' + encodedKey);
           });
 
           it('should default to simpla.config.server for server', function() {
