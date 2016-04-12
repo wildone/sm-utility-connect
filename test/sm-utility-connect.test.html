@@ -32,10 +32,7 @@
       describe('<sm-utility-connect>', function() {
 
         var component,
-            componentFixtures,
             listener;
-
-        componentFixtures = window.fixtures;
 
         beforeEach(function() {
           component = fixture('default');
@@ -48,6 +45,14 @@
 
         it('is okay', function() {
           expect(component).to.be.ok;
+        });
+
+        describe('behaviors', function() {
+          it('should expose persists behavior', function() {
+            component.async(function() {
+              expect(window.simpla.behaviors.persists).to.be.ok;
+            });
+          });
         });
 
         describe('functions', function() {

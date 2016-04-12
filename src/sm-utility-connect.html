@@ -33,6 +33,8 @@
 
   </template>
   <script>
+    import persists from './behaviors/persists';
+
     class SmUtilityConnect {
       beforeRegister() {
         this.is = 'sm-utility-connect';
@@ -121,5 +123,10 @@
     }
 
     Polymer(SmUtilityConnect);
+
+    // Set persists on simpla.behaviors
+    window.simpla = window.simpla || {};
+    window.simpla.behaviors = window.simpla.behaviors || {};
+    window.simpla.behaviors.persists = persists;
   </script>
 </dom-module>
