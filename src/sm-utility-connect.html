@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../simpla-core/simpla-core.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <link rel="import" href="../sm-utility-auth/sm-utility-auth.html">
+<link rel="import" href="../object-assign/object-assign.html">
 
 <dom-module id="sm-utility-connect">
   <template>
@@ -34,6 +34,8 @@
 
   </template>
   <script>
+    import persists from './behaviors/persists';
+
     class SmUtilityConnect {
       beforeRegister() {
         this.is = 'sm-utility-connect';
@@ -122,5 +124,10 @@
     }
 
     Polymer(SmUtilityConnect);
+
+    // Set persists on simpla.behaviors
+    window.simpla = window.simpla || {};
+    window.simpla.behaviors = window.simpla.behaviors || {};
+    window.simpla.behaviors.persists = persists;
   </script>
 </dom-module>
