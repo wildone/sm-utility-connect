@@ -9,7 +9,7 @@
     <link rel="import" href="../../test-fixture/test-fixture.html">
 
     <script>
-      var simpla = {
+      window.simpla = {
         config: {
           server: 'https://api.simpla.io',
           api: 'Afa9j-x'
@@ -19,8 +19,6 @@
 
     <!-- Import the element to test -->
     <link rel="import" href="../sm-utility-connect.html">
-    <script src="./sm-utility-connect.fixtures.js"></script>
-
   </head>
   <body>
     <test-fixture id="default">
@@ -134,6 +132,18 @@
           });
 
           it('should default to simpla.config.server for server', function() {
+            expect(component.api).to.equal(simpla.config.api);
+          });
+
+          it('should set server after ready', function() {
+            simpla.config.server = 'foo';
+            component = fixture('default');
+            expect(component.server).to.equal(simpla.config.server);
+          });
+
+          it('should set api after ready', function() {
+            simpla.config.api = 'bar';
+            component = fixture('default');
             expect(component.api).to.equal(simpla.config.api);
           });
 

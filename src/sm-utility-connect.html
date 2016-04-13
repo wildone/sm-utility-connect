@@ -47,17 +47,11 @@
             notify: true
           },
 
-          server: {
-            type: String,
-            value: simpla.config.server
-          },
+          server: String,
 
           key: String,
 
-          api: {
-            type: String,
-            value: simpla.config.api
-          },
+          api: String,
 
           endpoint: {
             computed: '_computeEndpoint(server, key, api)'
@@ -89,6 +83,11 @@
             value: false
           }
         };
+      }
+
+      ready() {
+        this.server = window.simpla.config.server;
+        this.api = window.simpla.config.api;
       }
 
       load() {
