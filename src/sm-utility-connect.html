@@ -1,6 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
-<link rel="import" href="../sm-utility-auth/sm-utility-auth.html">
 <link rel="import" href="../object-assign/object-assign.html">
 
 <dom-module id="sm-utility-connect">
@@ -30,8 +29,6 @@
       on-error="_errorHandler"
       debounce-duration="300"></iron-ajax>
 
-    <sm-utility-auth token="{{token}}"></sm-utility-auth>
-
   </template>
   <script>
     import persists from './behaviors/persists';
@@ -57,7 +54,11 @@
             computed: '_computeEndpoint(server, key, api)'
           },
 
-          token: String,
+          token: {
+            type: String,
+            value: Simpla.getState().token
+          },
+
           headers: {
             computed: '_computeHeaders(token)'
           },
@@ -83,6 +84,10 @@
             value: false
           }
         };
+      }
+
+      created() {
+        Simpla.observe('token', (token) => this.token = token);
       }
 
       ready() {
