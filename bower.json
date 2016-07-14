@@ -1,7 +1,7 @@
 {
   "name": "sm-utility-connect",
   "description": "Utility element to connect Simpla to a RESTful API",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "authors": [
     "Simpla <admin@simpla.io>"
   ],
