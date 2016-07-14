@@ -9,6 +9,12 @@
     <link rel="import" href="../../test-fixture/test-fixture.html">
 
     <script>
+      var token = 'some-token';
+      window.Simpla = {
+        getState: sinon.stub().returns({ token: token }),
+        observe: sinon.stub()
+      };
+
       window.simpla = {
         config: {
           server: 'https://api.simpla.io',
@@ -84,10 +90,17 @@
             expect(component.$.post.body).to.equal(body);
           });
 
-          it('should follow token from shared auth information', function() {
-            auth = document.createElement('sm-utility-auth');
-            auth.token = 'foo';
+          it('should follow token from Simpla global', function() {
+            var observing = Simpla.observe.lastCall.args[0],
+                callback = Simpla.observe.lastCall.args[1];
+
+            expect(observing).to.equal('token');
+            callback('foo');
             expect(component.token).to.equal('foo');
+          });
+
+          it('should initialize token from Simpla', function() {
+            expect(component.token).to.equal(token);
           });
 
           it('should calculate headers based on token', function() {
@@ -187,17 +200,25 @@
           });
 
           it('should fire error when error from get', function() {
-            component.addEventListener('error', listener);
+            // We can't let the fire actually happen as Safari and FF treat events
+            //  with 'error' as errors, understandably, and means tests fails
+            sinon.stub(component, 'fire');
 
             component.$.get.fire('error', null, { bubbles: false });
-            expect(listener.called).to.be.true;
+            expect(component.fire.calledWith('error')).to.be.true;
+
+            component.fire.restore();
           });
 
           it('should fire error when error from post', function() {
-            component.addEventListener('error', listener);
+            // We can't let the fire actually happen as Safari and FF treat events
+            //  with 'error' as errors, understandably, and means tests fails
+            sinon.stub(component, 'fire');
 
             component.$.post.fire('error', null, { bubbles: false });
-            expect(listener.called).to.be.true;
+            expect(component.fire.calledWith('error')).to.be.true;
+
+            component.fire.restore();
           });
 
           it('should not bubble loaded', function() {
